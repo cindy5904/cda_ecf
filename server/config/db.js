@@ -5,6 +5,10 @@ const sequelize = new Sequelize("projects", "root", "Tabouret1", {
   dialect: "mysql",
 });
 
+const User = require('../models/User')(sequelize);
+const Project = require('../models/Project')(sequelize);
+const Task = require('../models/Task')(sequelize);
+
 sequelize
   .sync({ force: false })
   .then(() => console.log("La base de données à bien été synchronisée"))
@@ -13,6 +17,8 @@ sequelize
   );
 
 module.exports = {
-  sequelize
-   
+  sequelize,
+  User,
+  Project,
+  Task
 };

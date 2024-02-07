@@ -1,6 +1,6 @@
 const bcrypt = require("bcrypt");
-// const jwt = require("jsonwebtoken");
-const {User} = require('../config/db')
+const jwt = require("jsonwebtoken");
+const {User} = require('../config/db');
 
 exports.signup = async (req, res) => {
   try {
@@ -15,7 +15,7 @@ exports.signup = async (req, res) => {
 
 exports.login = async (req, res) => {
   try {
-    const { email, password } = req.params;
+    const { email, password } = req.body;
     const user = await User.findOne({ email });
     if (!user) {
       return res
@@ -31,10 +31,10 @@ exports.login = async (req, res) => {
         .json({ message: "Utilisateur ou mot de passe incorrect" });
     }
 
-    // const token = jwt.sign({ userId: user.id }, "RANDOM_TOKEN_SECRET", {
-    //   expiresIn: "24h",
-    // });
-    // res.status(200).json({ token });
+    const token = jwt.sign({ userId: user.id }, "RANDOM_TOKEN_SECRET", {
+      expiresIn: "24h",
+    });
+    res.status(200).json({ token });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
