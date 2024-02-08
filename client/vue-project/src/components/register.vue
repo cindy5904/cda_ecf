@@ -11,6 +11,9 @@ const register = async () => {
   try {
    
     await authStore.register(username.value, email.value, password.value);
+    username.value = '';
+    email.value = '';
+    password.value = '';
   } catch (error) {
     console.error('Erreur lors de l\'inscription:', error);
   }

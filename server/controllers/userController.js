@@ -17,19 +17,19 @@ exports.signup = async (req, res) => {
 exports.login = async (req, res) => {
   try {
     const { email, password } = req.body;
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ where: { email} });
     if (!user) {
       return res
         .status(401)
-        .json({ message: "Utilisateur ou mot de passe incorrect" });
+        .json({ message: "Utilisateur incorrect" });
     }
-
+    console.log(user)
     const isValid = await bcrypt.compare(password, user.password);
 
     if (!isValid) {
       return res
         .status(401)
-        .json({ message: "Utilisateur ou mot de passe incorrect" });
+        .json({ message: "mot de passe incorrect" });
     }
 
     const token = jwt.sign({ userId: user.id }, "RANDOM_TOKEN_SECRET", {
@@ -41,13 +41,4 @@ exports.login = async (req, res) => {
   }
 };
 
-// exports.SignupData = async (req, res) => {
-//   try {
-//     const { username, email, password } = req.body;
-//     const hashedPassword = await bcrypt.hash(password, 10);
-//     const newUser = await User.create({ username, email, password: hashedPassword });
-//     res.status(201).json(newUser);
-//   } catch (error) {
-//     res.status(500).json({ error: error.message });
-//   }
-// };
+

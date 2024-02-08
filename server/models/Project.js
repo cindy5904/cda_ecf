@@ -7,6 +7,14 @@ module.exports = (sequelize) => {
           primaryKey: true,
           autoIncrement: true,
         },
+        id_user: {
+            type: DataTypes.INTEGER,
+            allowNull: true,
+            references: {
+                model: 'User', 
+                key: 'id_user',
+            },
+        },
         id_task: {
           type: DataTypes.INTEGER,
           allowNull: true, 
