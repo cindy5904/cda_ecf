@@ -4,6 +4,7 @@ const {User} = require('../config/db');
 
 exports.signup = async (req, res) => {
   try {
+    console.log('Nouvelle inscription :', req.body);
     const { username, email, password } = req.body;
     const hashedPassword = await bcrypt.hash(password, 10);
     const newUser = await User.create({ username, email, password: hashedPassword });
@@ -40,4 +41,13 @@ exports.login = async (req, res) => {
   }
 };
 
-
+// exports.SignupData = async (req, res) => {
+//   try {
+//     const { username, email, password } = req.body;
+//     const hashedPassword = await bcrypt.hash(password, 10);
+//     const newUser = await User.create({ username, email, password: hashedPassword });
+//     res.status(201).json(newUser);
+//   } catch (error) {
+//     res.status(500).json({ error: error.message });
+//   }
+// };

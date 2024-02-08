@@ -30,7 +30,7 @@ exports.updateProject = async (req, res) => {
         const { id_project } = req.params;
         const { updatedData } = req.body; 
 
-        const project = await Project.findOne({ id: id_project }, { where: { id_project } });
+        const project = await Project.findOne({ where: { id_project } });
 
         if (!project) {
             return res.status(404).json({ message: "Projet non trouvé"});
@@ -43,29 +43,13 @@ exports.updateProject = async (req, res) => {
     }
 };
 
-// exports.deleteProject = async (req, res) => {
-//     try {
-//         const { id_project } = req.params;
-//         const project = await Project.findOne({ where: { id_project } });
-
-//         if (!project) {
-//             return res.status(404).json({ message: "Projet non trouvé"});
-//         }
-//         await project.destroy();
-
-//         res.json({ message: "Projet supprimé avec succès" });
-//     } catch (error) {
-//         console.error(error);
-//         res.status(500).json({ message: "Erreur lors de la suppression du projet" });
-//     }
-// };
 exports.deleteProject = async (req, res) => {
     try {
         const { id_project } = req.params;
-        console.log('ID_PROJECT:', id_project);
+    
 
         const project = await Project.findOne({ where: { id_project } });
-        console.log('PROJECT:', project);
+        
 
         if (!project) {
             return res.status(404).json({ message: "Projet non trouvé"});

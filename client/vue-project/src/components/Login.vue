@@ -1,31 +1,11 @@
 <script setup>
-import { ref } from 'vue';
-import { useAuthStore } from '../stores/auth';
 
-const authStore = useAuthStore();
-const username = ref('');
-const email = ref('');
-const password = ref('');
-
-const register = async () => {
-  try {
-   
-    await authStore.register(username.value, email.value, password.value);
-  } catch (error) {
-    console.error('Erreur lors de l\'inscription:', error);
-  }
-};
 </script>
-
 <template>
 <div class="bg-container">
   <div class="container-form">
-  <h1>Inscription</h1>
-  <form @submit.prevent="register" class="form-bloc">
-    <div class="form-groupe">
-      <label for="username">Username:</label>
-      <input v-model="username" required />
-    </div>
+  <h1>Connexion</h1>
+  <form @submit.prevent="login" class="form-bloc">
     <div class="form-groupe">
       <label for="email">Email:</label>
       <input type="email" v-model="email" required />
@@ -34,15 +14,12 @@ const register = async () => {
       <label for="password">Password:</label>
       <input type="password" v-model="password" required />
     </div>
-      <button type="submit">s'inscrire</button>
+      <button type="submit">se connecter</button>
   </form>
 </div>
 </div>
-
 </template>
-
 <style scoped>
-
 .container-form {
   width: 400px; 
   height: 400px; 
