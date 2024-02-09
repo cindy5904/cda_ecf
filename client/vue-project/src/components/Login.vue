@@ -80,13 +80,16 @@ input {
 input:focus {
   outline: #b1afaf; 
 }
-a {
+.action-button {
   border-radius: 15px;
   padding: 10px 10px; 
   background-color: #ffffff;
   border: 1px solid #cccccc; 
   cursor: pointer; 
   margin-top: 10px;
+  text-decoration: none;
+  color: #0b1113;
+  text-align: center;
 
 }
 </style>
