@@ -29,7 +29,7 @@ CREATE TABLE user (
     );     
 
 
-
+SET SQL_SAFE_UPDATES = 0;
 ALTER TABLE task
 MODIFY COLUMN status VARCHAR(20);
 
@@ -37,4 +37,19 @@ ALTER TABLE project
 ADD COLUMN id_user INT,
 ADD FOREIGN KEY (id_user) REFERENCES user (id_user);
 
+INSERT INTO project (name_project, descriptions, id_user)
+VALUES
+  ('Projet 1', 'Description du projet 1', 1),
+  ('Projet 2', 'Description du projet 2', 2);
+  
+ SELECT * FROM user; 
+ 
+ INSERT INTO project (name_project, descriptions, id_user)
+VALUES
+  ('Projet 1', 'Description du projet 1', 5),
+  ('Projet 2', 'Description du projet 2', 5);
+  
 SELECT * FROM project;
+ALTER TABLE project
+DROP FOREIGN KEY FK_project_id_task;
+select * from project;
