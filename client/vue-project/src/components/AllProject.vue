@@ -105,9 +105,7 @@ h1{
   border-radius: 5px;
   cursor: pointer;
   color: black;
-  
 }
-
 .task-button:hover {
   background-color: #cbbbc2;
 }

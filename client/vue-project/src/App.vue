@@ -3,6 +3,12 @@ import { RouterLink, RouterView } from 'vue-router'
 import { useAuthStore } from './stores/auth'
 
 const authStore = useAuthStore();
+const isAuthenticated = authStore.isAuthenticated;
+
+const logout = async () => {
+  await authStore.logout(); 
+  
+};
 </script>
 
 <template>
@@ -13,6 +19,7 @@ const authStore = useAuthStore();
           <li><RouterLink to="/homeproject" id="color">Projet</RouterLink></li>
           <li><RouterLink to="/login" id="color">Connexion</RouterLink></li>
           <li><RouterLink to="/register" id="color">Inscription</RouterLink></li>
+          <li><RouterLink to="/login" id="color">Déconnexion</RouterLink></li>
         </ul>
       </div>
     </header>

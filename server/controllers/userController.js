@@ -42,5 +42,12 @@ exports.login = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+exports.logout = async (req, res) => {
+  try {
+    res.status(200).json({ message: "Déconnexion réussie" });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
 
 

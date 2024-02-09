@@ -36,11 +36,23 @@ export const useAuthStore = defineStore('auth', () => {
       error.value = 'Erreur lors de la récupération des données';
     }
   };
+  const logout = async () => {
+    try {
+      await axios.post('http://localhost:3000/api/logout');
+  
+      localStorage.removeItem('token');
+  
+     
+    } catch (error) {
+      console.error('Erreur lors de la déconnexion :', error);
+    }
+  };
   return {
     data,
     error,
     register,
     login,
+    logout
     
   };
 });
