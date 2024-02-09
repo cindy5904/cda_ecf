@@ -33,7 +33,7 @@ exports.login = async (req, res) => {
     }
     
     console.log(user.id_user);
-    const token = jwt.sign({ user_id: user.id_user }, "RANDOM_TOKEN_SECRET", {
+    const token = jwt.sign({ id_user: user.id_user }, "RANDOM_TOKEN_SECRET", {
       expiresIn: "24h",
     });
     console.log(token);

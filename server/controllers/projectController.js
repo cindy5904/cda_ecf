@@ -6,7 +6,7 @@ exports.createProject = async (req, res) => {
         if (!name_project || !descriptions) {
             return res.status(400).json({ message: "le nom et la description sont requis pour créer un projet "})
         }
-        const userId = req.auth.user_id;
+        const userId = req.auth.id_user;
         const newProject = await Project.create({ name_project, descriptions, id_user: userId  });
         res.status(201).json({ message: "Le projet a été créé avec succès", project: newProject});
     } catch (error) {
