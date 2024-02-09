@@ -1,19 +1,11 @@
 const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
-const User = sequelize.define('User', {
+  const User = sequelize.define('User', {
     id_user: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
-    },
-    id_project: {
-      type: DataTypes.INTEGER,
-      allowNull: true, 
-      references: {
-        model: 'Project', 
-        key: 'id_project',
-      },
     },
     username: {
       type: DataTypes.STRING,
@@ -28,9 +20,13 @@ const User = sequelize.define('User', {
       allowNull: false,
     },
   }, {
-    
     freezeTableName: true,
     timestamps: false,
   });
+
+ 
+
   return User;
-}
+};
+
+ 

@@ -10,18 +10,18 @@ const authStore = useAuthStore();
       <div class="nav">
         <ul class="nav-home">
           <li>Accueil</li>
-          <li><RouterLink to="/project" id="color">Projet</RouterLink></li>
-          <li v-if="!authStore.isLoggedIn"><RouterLink to="/login" id="color">Connexion</RouterLink></li>
-          <li v-if="!authStore.isLoggedIn"><RouterLink to="/register" id="color">Inscription</RouterLink></li>
+          <li><RouterLink to="/homeproject" id="color">Projet</RouterLink></li>
+          <li><RouterLink to="/login" id="color">Connexion</RouterLink></li>
+          <li><RouterLink to="/register" id="color">Inscription</RouterLink></li>
         </ul>
       </div>
     </header>
     <div id="app">
     <RouterView />
   </div>
-  <footer>
+  <!-- <footer>
     Tous Droits Réservés &copy;
-</footer>
+</footer> -->
 </template>
 
 <style scoped>

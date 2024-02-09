@@ -11,7 +11,6 @@ const password = ref('');
 
 const login = async () => {
   try {
-    
     await authStore.login(email.value, password.value);
     if (authStore.isLoggedIn) {
         router.push('/');
@@ -20,11 +19,7 @@ const login = async () => {
     console.error('Erreur lors de la connexion:', error);
   }
 };
-watch(() => authStore.token, (newToken) => {
-    if (newToken) {
-      router.push('/');
-    }
-  });
+
 </script>
 <template>
 <div class="bg-container">
@@ -39,7 +34,7 @@ watch(() => authStore.token, (newToken) => {
       <label for="password">Password:</label>
       <input type="password" v-model="password" required />
     </div>
-      <button type="submit">se connecter</button>
+    <router-link to="/" class="action-button">Se connecter</router-link>
   </form>
 </div>
 </div>
@@ -85,7 +80,7 @@ input {
 input:focus {
   outline: #b1afaf; 
 }
-button {
+a {
   border-radius: 15px;
   padding: 10px 10px; 
   background-color: #ffffff;

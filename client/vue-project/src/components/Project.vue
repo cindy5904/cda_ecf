@@ -3,21 +3,20 @@ import { ref } from 'vue';
 import { useProjectStore } from '../stores/project';
 import { useAuthStore } from '../stores/auth';
 
-
 const projectStore = useProjectStore();
-const authStore = useAuthStore();
 const name_project = ref('');
 const descriptions = ref('');
 
 const project = async () => {
-  try {
-    const userId = authStore.userId;
-    await projectStore.project(name_project.value, descriptions.value, userId);
-    name_project.value = '';
-    descriptions.value = '';
-  } catch (error) {
-    console.error('Erreur lors de la création du project:', error);
-  }
+    try {
+        const token = localStorage.getItem('token');
+        await projectStore.createProject(name_project.value, descriptions.value, token);
+
+        name_project.value = '';
+        descriptions.value = '';
+    } catch (error) {
+        console.error('Erreur lors de la création du projet:', error);
+    }
 };
 </script>
 <template>

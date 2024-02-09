@@ -6,8 +6,8 @@ exports.createProject = async (req, res) => {
         if (!name_project || !descriptions) {
             return res.status(400).json({ message: "le nom et la description sont requis pour créer un projet "})
         }
-        const userId = req.auth.userId;
-        const newProject = await Project.create({ name_project, descriptions, id_user: userId });
+        const userId = req.auth.user_id;
+        const newProject = await Project.create({ name_project, descriptions, id_user: userId  });
         res.status(201).json({ message: "Le projet a été créé avec succès", project: newProject});
     } catch (error) {
         console.error(error);
@@ -17,7 +17,10 @@ exports.createProject = async (req, res) => {
 
 exports.getAllProjects = async (req, res) => {
     try {
-        const projects = await Project.findAll();
+        // const projects = await Project.findAll();
+        const userId = req.params.userId;
+
+        const projects = await Project.findAll({ where: { id_user: userId } });
         res.json(projects);
     } catch (error) {
         res.status(500).json({ message: "Erreur lors de la récupération des projets"});

@@ -31,10 +31,12 @@ exports.login = async (req, res) => {
         .status(401)
         .json({ message: "mot de passe incorrect" });
     }
-
-    const token = jwt.sign({ userId: user.id }, "RANDOM_TOKEN_SECRET", {
+    
+    console.log(user.id_user);
+    const token = jwt.sign({ user_id: user.id_user }, "RANDOM_TOKEN_SECRET", {
       expiresIn: "24h",
     });
+    console.log(token);
     res.status(200).json({ token });
   } catch (error) {
     res.status(500).json({ error: error.message });

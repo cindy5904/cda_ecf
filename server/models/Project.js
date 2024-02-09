@@ -15,14 +15,6 @@ module.exports = (sequelize) => {
                 key: 'id_user',
             },
         },
-        id_task: {
-          type: DataTypes.INTEGER,
-          allowNull: true, 
-          references: {
-            model: 'Task',
-            key: 'id_task',
-          },
-        },
         name_project: {
           type: DataTypes.STRING,
           allowNull: false,
@@ -32,7 +24,6 @@ module.exports = (sequelize) => {
           allowNull: true,
         },
       }, {
-       
         freezeTableName: true,
         timestamps: false, 
       });
