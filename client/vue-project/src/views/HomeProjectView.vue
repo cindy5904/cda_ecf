@@ -8,11 +8,11 @@
     </div>
     <div class="user-info">
       <h2>Mon Profil</h2>
-      <p><strong>Nom:</strong> LeMytho</p>
-      <p><strong>Prénom:</strong> Jeremy</p>
-      <p><strong>Localité:</strong> Arras</p>
-      <p><strong>Description:</strong> Menteur compulsif</p>
-      <p><strong>Email:</strong> jeremylemytho@gmail.com</p>
+      <p><strong>Nom:</strong> Dupont</p>
+      <p><strong>Prénom:</strong> Samuel</p>
+      <p><strong>Localité:</strong> Lille</p>
+      <p><strong>Description:</strong> Développeur web</p>
+      <p><strong>Email:</strong> dupontsamuel@gmail.com</p>
     </div>
     <div class="actions">
         <router-link to="/project" class="action-button">Créer un Projet</router-link>
