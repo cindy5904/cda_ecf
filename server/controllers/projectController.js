@@ -17,9 +17,9 @@ exports.createProject = async (req, res) => {
 
 exports.getAllProjects = async (req, res) => {
     try {
-        // const projects = await Project.findAll();
-        const userId = req.params.userId;
-
+        const userId = req.auth.id_user;
+        console.log('UserId:', userId);
+        console.log(req.params)
         const projects = await Project.findAll({ where: { id_user: userId } });
         res.json(projects);
     } catch (error) {

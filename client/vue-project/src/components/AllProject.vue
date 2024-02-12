@@ -1,19 +1,15 @@
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted , computed} from 'vue';
 import { useProjectStore } from '../stores/project';
 import { useAuthStore } from '../stores/auth';
 
 const projectStore = useProjectStore();
-const authStore = useAuthStore();
-const projects = ref([]);
+const user = useAuthStore();
+// const projects = computed(() => projectStore.project);
 
-onMounted(async () => {
+onMounted( () => {
   try {
-    
-    const userId = authStore.userId;
-    console.log(userId)
-    await projectStore.AllProject(userId);
-    projects.value = projectStore.projects;
+     projectStore.AllProject(user.id);
   } catch (error) {
     console.error('Erreur lors de la récupération des projets:', error);
   }
@@ -22,48 +18,103 @@ onMounted(async () => {
 <template>
   <h1>Liste de Projets</h1>
  <div class="container">
-    <!-- <ul>
-      <li v-for="project in projects" :key="project.id_project">
+    <div class="card">
+      <div class="cinema">
+        <img src="../assets/sallecinema.jpg" alt="salle de cinéma" class="cinemaImg">
+      </div>
+      <div class="content">
+        <h2>Le Palais du Film</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis, quod? Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, laborum?</p>
+          <div class="btn">
+            <button>voir les tâches</button>
+            <button>modifier</button>
+            <button>supprimer</button>
+          </div>
+      </div>
+      
+    </div>
+
+    <div class="card">
+      <div class="cinema">
+        <img src="../assets/voit.jpg" alt="voiture" class="voitureImg">
+      </div>
+      <div class="content">
+        <h2>Pilote Xtrême</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis, quod? Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, laborum?</p>
+          <div class="btn">
+            <button>voir les tâches</button>
+            <button>modifier</button>
+            <button>supprimer</button>
+          </div>
+      </div>   
+    </div>
+
+    <div class="card">
+      <div class="cinema">
+        <img src="../assets/voyage.jpg" alt="salle de cinéma" class="cinemaImg">
+      </div>
+      <div class="content">
+        <h2>Repos à l'horizon</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis, quod? Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, laborum?</p>
+          <div class="btn">
+            <button>voir les tâches</button>
+            <button>modifier</button>
+            <button>supprimer</button>
+          </div>
+      </div>
+     </div>
+
+    <div class="card">
+      <div class="the">
+        <img src="../assets/the.jpg" alt="thé en vrac" class="the">
+      </div>
+      <div class="content">
+        <h2>Infusion pure</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis, quod? Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, laborum?</p>
+          <div class="btn">
+            <button>voir les tâches</button>
+            <button>modifier</button>
+            <button>supprimer</button>
+          </div>
+      </div>  
+    </div>
+
+    <div class="card">
+      <div class="wars">
+        <img src="../assets/wars.jpg" alt="paysage apocalyptique" class="warsImg">
+      </div>
+      <div class="content">
+        <h2>Dévastation Mortelle</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis, quod? Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, laborum?</p>
+          <div class="btn">
+            <button>voir les tâches</button>
+            <button>modifier</button>
+            <button>supprimer</button>
+          </div>
+      </div>   
+     </div>
+    <div class="card">
+      <div class="sushi">
+        <img src="../assets/sushi.jpg" alt="restaurant japonais" class="restoImg">
+      </div>
+      <div class="content">
+        <h2>Sushi Shop</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis, quod? Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, laborum?</p>
+          <div class="btn">
+            <button>voir les tâches</button>
+            <button>modifier</button>
+            <button>supprimer</button>
+          </div>
+      </div>
+    </div>
+     
+  </div>
+  <ul class="project_data">
+    <li v-for="project in projectStore.project" :key="project.id_project">
         {{ project.name_project }} - {{ project.descriptions }}
       </li>
-    </ul> -->
+    </ul>
     
-    <div class="card">
-      <h2>Projet 1</h2>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis, quod? Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, laborum?</p>
-      <router-link to="/project" class="task-button">Tâche</router-link>
-    </div>
-
-    <div class="card">
-      <h2>Projet 2</h2>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae, consequuntur! Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, laborum?</p>
-      <router-link to="/project" class="task-button">Tâche</router-link>
-    </div>
-
-    <div class="card">
-      <h2>Projet 3</h2>
-      <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio, accusamus! Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, laborum?</p>
-      <router-link to="/project" class="task-button">Tâche</router-link>
-    </div>
-
-    <div class="card">
-      <h2>Projet 4</h2>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, pariatur. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, laborum?</p>
-      <router-link to="/project" class="task-button">Tâche</router-link>
-    </div>
-
-    <div class="card">
-      <h2>Projet 5</h2>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, obcaecati? Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, laborum?</p>
-      <router-link to="/project" class="task-button">Tâche</router-link>
-    </div>
-    <div class="card">
-      <h2>Projet 6</h2>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, laborum?Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, laborum?</p>
-      <router-link to="/project" class="task-button">Tâche</router-link>
-    </div>
-
-  </div>
 </template>
 <style scoped>
 h1{ 
@@ -75,17 +126,22 @@ h1{
   justify-content: center;
   
 }
+
+img {
+  width: 100%;
+  height: 230px;
+  border-radius: 5px;
+
+}
+
  .card {
-  border: 1px solid rgb(246, 242, 242);
   border-radius: 10px;
-  margin: 20px;
-  padding: 20px;
+  margin: 10px;
+  padding: 10px;
   width: 350px;
-  height: 200px;
-  box-shadow: 0 4px 30px rgba(0,0,0,0.1);
-  background-color: rgb(241, 233, 233);
+  height: 450px;
   transition: transform 0.3s ease;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   
     }
 .card:hover {
@@ -94,19 +150,29 @@ h1{
 .card h2 {
   text-align: center;
 }
-
-.task-button {
-  display: block;
-  text-align: center;
+.content p {
   padding: 10px;
-  margin-top: 30px;
-  background-color: #ead3d9;
-  text-decoration: none;
-  border-radius: 5px;
-  cursor: pointer;
-  color: black;
 }
-.task-button:hover {
-  background-color: #cbbbc2;
-}
+
+.btn {
+  display: flex;
+  gap: 10px;
+  justify-content: center; 
+  }
+
+  .btn button {
+    background: linear-gradient(to right, #c5ccd9, #d9deeb); 
+    border: none;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+  }
+
+  .project_data {
+    height: 100px;
+    color: black;
+  }
 </style>

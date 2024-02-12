@@ -9,8 +9,8 @@ const descriptions = ref('');
 
 const project = async () => {
     try {
-        const token = localStorage.getItem('token');
-        await projectStore.createProject(name_project.value, descriptions.value, token);
+        // const token = localStorage.getItem('token');
+        await projectStore.createProject(name_project.value, descriptions.value);
 
         name_project.value = '';
         descriptions.value = '';
@@ -32,7 +32,8 @@ const project = async () => {
       <label for="descriptions">Description:</label>
       <textarea id="descriptions" v-model="descriptions" required></textarea>
     </div>
-    <router-link to="/project" class="action-button">Créer</router-link>
+    <!-- <router-link to="/project" class="action-button">Créer</router-link> -->
+    <button  type="submit" class="action-button">Créer</button>
 
   </form>
 </div>

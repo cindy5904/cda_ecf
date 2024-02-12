@@ -2,23 +2,27 @@
 import { onMounted, watch } from 'vue';
 import { ref } from 'vue';
 import { useAuthStore } from '../stores/auth';
-import { useRouter } from 'vue-router';
+import router from '../router/index';
 
 const authStore = useAuthStore();
-const router = useRouter();
 const email = ref('');
 const password = ref('');
 
 const login = async () => {
   try {
+    console.log('Tentative de connexion...');
     await authStore.login(email.value, password.value);
     if (authStore.isLoggedIn) {
-        router.push('/');
+      console.log('Connexion réussie. Redirection vers la page d\'accueil...');
+      
     }
   } catch (error) {
     console.error('Erreur lors de la connexion:', error);
   }
 };
+
+
+
 
 </script>
 <template>
@@ -34,7 +38,7 @@ const login = async () => {
       <label for="password">Password:</label>
       <input type="password" v-model="password" required />
     </div>
-    <router-link to="/" class="action-button">Se connecter</router-link>
+    <button type="submit" class="action-button">connexion</button>
   </form>
 </div>
 </div>
