@@ -106,15 +106,13 @@ onMounted( () => {
             <button>supprimer</button>
           </div>
       </div>
-    </div>
-     
+    </div>   
   </div>
   <ul class="project_data">
     <li v-for="project in projectStore.project" :key="project.id_project">
         {{ project.name_project }} - {{ project.descriptions }}
       </li>
     </ul>
-    
 </template>
 <style scoped>
 h1{ 
